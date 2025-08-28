@@ -1,15 +1,281 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MangaVerso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  Hello world
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="assets/logo.png" alt="MangaVerso" class="logo-img">
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#catalog">Catálogo</a></li>
+          <li><a href="#popular">Populares</a></li>
+          <li><a href="#recent">Recentes</a></li>
+        </ul>
+      </nav>
+      <div class="search-box">
+        <input type="text" placeholder="Buscar mangás..." class="search-input">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+        </div>
+      </div>
+    </section>
+
+    <section class="store-section" id="store">
+      <div class="container">
+        <h2 class="section-title">Nossa Loja</h2>
+        
+        <div class="store-info">
+          <div class="store-details">
+            <div class="store-info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Localização</h4>
+                <p>R. Dr. João Santos Filho, 255<br>Parnamirim, Recife - PE, 52060-615</p>
+              </div>
+            </div>
+            
+            <div class="store-info-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Horários</h4>
+                <p>Segunda à Sexta: 9h às 18h<br>Sábados: 9h às 16h<br>Domingos: Fechado</p>
+              </div>
+            </div>
+            
+            <div class="store-info-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Contatos</h4>
+                <p>Telefone: (81) 9745-6459<br>WhatsApp: (81) 99745-6459<br>Email: xmendex30@gmail.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="store-carousel">
+            <div class="carousel-container">
+              <div class="carousel-slide active">
+                <img src="assets/c1.png" alt="Interior da loja" class="carousel-image">
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/c2.jpg" alt="Estante de mangás" class="carousel-image">
+              </div>
+              <div class="carousel-slide">
+                <img src="assets/c3.jpg" alt="Área de leitura" class="carousel-image">
+              </div>
+            </div>
+            <div class="carousel-controls">
+              <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+              <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="carousel-indicators">
+              <span class="indicator active" data-slide="0"></span>
+              <span class="indicator" data-slide="1"></span>
+              <span class="indicator" data-slide="2"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="store-description">
+          <p>Bem-vindos ao MangaVerso! Somos uma loja especializada em mangás com mais de 10 anos de experiência no mercado. Nossa paixão por histórias japonesas nos motivou a criar um espaço onde fãs de todas as idades podem encontrar seus títulos favoritos e descobrir novas aventuras.</p>
+          <p>Oferecemos um acervo completo com os lançamentos mais recentes e clássicos atemporais, além de um ambiente acolhedor para você explorar e se inspirar. Nossa equipe é formada por verdadeiros otakus que estão sempre prontos para ajudar você a encontrar sua próxima leitura favorita!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalog">
+      <div class="container">
+        <h2 class="section-title">Catálogo de Mangás</h2>
+        
+        <div class="filters">
+          <button class="filter-btn active">Todos</button>
+          <button class="filter-btn">Ação</button>
+          <button class="filter-btn">Romance</button>
+          <button class="filter-btn">Aventura</button>
+          <button class="filter-btn">Drama</button>
+          <button class="filter-btn">Comédia</button>
+        </div>
+
+        <div class="manga-grid">
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/onepiece103.jpg" alt="One Piece Volume 103" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">One Piece</h3>
+              <p class="manga-genre">Ação, Aventura</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 9.2</span>
+                <span class="chapters">Vol. 103</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/one17.jpg" alt="One Piece Volume 17" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">One Punch Man</h3>
+              <p class="manga-genre">Ação, Aventura</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 9.2</span>
+                <span class="chapters">Vol. 17</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/bleach57.jpg" alt="Bleach Volume 57" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Bleach</h3>
+              <p class="manga-genre">Ação, Sobrenatural</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 8.8</span>
+                <span class="chapters">Vol. 57</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/blue.png" alt="Blue Lock Volume 25" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Blue Lock</h3>
+              <p class="manga-genre">Esportes, Drama</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 8.9</span>
+                <span class="chapters">Vol. 25</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/boku11.jpg" alt="Boku no Hero Academia Volume 11" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Boku no Hero Academia</h3>
+              <p class="manga-genre">Ação, Super-heróis</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 8.7</span>
+                <span class="chapters">Vol. 11</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/death12.jpg" alt="Death Note Volume 12" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Death Note</h3>
+              <p class="manga-genre">Suspense, Sobrenatural</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 9.1</span>
+                <span class="chapters">Vol. 12</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/gatchiakuta10.jpg" alt="Gachiakuta Volume 10" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Gachiakuta</h3>
+              <p class="manga-genre">Ação, Fantasia</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 8.4</span>
+                <span class="chapters">Vol. 10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/sakamoto6.jpg" alt="Sakamoto Days Volume 6" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Sakamoto Days</h3>
+              <p class="manga-genre">Ação, Comédia</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 8.6</span>
+                <span class="chapters">Vol. 6</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="manga-card">
+            <div class="manga-cover">
+              <img src="assets/sakamoto7.jpg" alt="Sakamoto Days Volume 7" class="manga-image">
+            </div>
+            <div class="manga-info">
+              <h3 class="manga-title">Sakamoto Days</h3>
+              <p class="manga-genre">Ação, Comédia</p>
+              <div class="manga-stats">
+                <span class="rating"><i class="fas fa-star"></i> 8.6</span>
+                <span class="chapters">Vol. 7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="load-more">
+          <button class="load-more-btn">Carregar Mais</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>MangaVerso</h3>
+          <p>Seu universo de mangás favoritos em um só lugar.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#catalog">Catálogo</a></li>
+            <li><a href="#popular">Populares</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <p>contato@mangaverso.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 MangaVerso. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 
