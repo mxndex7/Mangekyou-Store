@@ -60,13 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const ctaButton = document.querySelector('.cta-button');
-    ctaButton.addEventListener('click', function() {
-        const catalogSection = document.querySelector('#catalog');
-        catalogSection.scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+    
 
     mangaCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -78,41 +72,83 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Carousel functionality
-    const slides = document.querySelectorAll('.carousel-slide');
-    const indicators = document.querySelectorAll('.indicator');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    let currentSlide = 0;
+    // Hero Carousel functionality
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroIndicators = document.querySelectorAll('.hero-indicator');
+    const heroPrevBtn = document.querySelector('.hero-prev-btn');
+    const heroNextBtn = document.querySelector('.hero-next-btn');
+    let currentHeroSlide = 0;
 
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        indicators.forEach(indicator => indicator.classList.remove('active'));
+    function showHeroSlide(index) {
+        heroSlides.forEach(slide => slide.classList.remove('active'));
+        heroIndicators.forEach(indicator => indicator.classList.remove('active'));
         
-        slides[index].classList.add('active');
-        indicators[index].classList.add('active');
-        currentSlide = index;
+        if (heroSlides[index] && heroIndicators[index]) {
+            heroSlides[index].classList.add('active');
+            heroIndicators[index].classList.add('active');
+            currentHeroSlide = index;
+        }
     }
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
+    function nextHeroSlide() {
+        currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+        showHeroSlide(currentHeroSlide);
     }
 
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
+    function prevHeroSlide() {
+        currentHeroSlide = (currentHeroSlide - 1 + heroSlides.length) % heroSlides.length;
+        showHeroSlide(currentHeroSlide);
     }
 
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
+    if (heroNextBtn && heroPrevBtn) {
+        heroNextBtn.addEventListener('click', nextHeroSlide);
+        heroPrevBtn.addEventListener('click', prevHeroSlide);
     }
 
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => showSlide(index));
+    heroIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => showHeroSlide(index));
     });
 
-    // Auto-slide carousel
-    setInterval(nextSlide, 5000);
+    // Auto-slide hero carousel
+    setInterval(nextHeroSlide, 6000);
+
+    // Store Carousel functionality
+    const storeSlides = document.querySelectorAll('.carousel-slide');
+    const storeIndicators = document.querySelectorAll('.indicator');
+    const storePrevBtn = document.querySelector('.prev-btn');
+    const storeNextBtn = document.querySelector('.next-btn');
+    let currentStoreSlide = 0;
+
+    function showStoreSlide(index) {
+        storeSlides.forEach(slide => slide.classList.remove('active'));
+        storeIndicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        if (storeSlides[index] && storeIndicators[index]) {
+            storeSlides[index].classList.add('active');
+            storeIndicators[index].classList.add('active');
+            currentStoreSlide = index;
+        }
+    }
+
+    function nextStoreSlide() {
+        currentStoreSlide = (currentStoreSlide + 1) % storeSlides.length;
+        showStoreSlide(currentStoreSlide);
+    }
+
+    function prevStoreSlide() {
+        currentStoreSlide = (currentStoreSlide - 1 + storeSlides.length) % storeSlides.length;
+        showStoreSlide(currentStoreSlide);
+    }
+
+    if (storeNextBtn && storePrevBtn) {
+        storeNextBtn.addEventListener('click', nextStoreSlide);
+        storePrevBtn.addEventListener('click', prevStoreSlide);
+    }
+
+    storeIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => showStoreSlide(index));
+    });
+
+    // Auto-slide store carousel
+    setInterval(nextStoreSlide, 5000);
 });
