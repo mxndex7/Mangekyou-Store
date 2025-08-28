@@ -75,8 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hero Carousel functionality
     const heroSlides = document.querySelectorAll('.hero-slide');
     const heroIndicators = document.querySelectorAll('.hero-indicator');
-    const heroPrevBtn = document.querySelector('.hero-prev-btn');
-    const heroNextBtn = document.querySelector('.hero-next-btn');
+    
     let currentHeroSlide = 0;
 
     function showHeroSlide(index) {
@@ -100,10 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showHeroSlide(currentHeroSlide);
     }
 
-    if (heroNextBtn && heroPrevBtn) {
-        heroNextBtn.addEventListener('click', nextHeroSlide);
-        heroPrevBtn.addEventListener('click', prevHeroSlide);
-    }
+    
 
     heroIndicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => showHeroSlide(index));

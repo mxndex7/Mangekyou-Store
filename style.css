@@ -139,16 +139,7 @@ body {
   object-fit: cover;
 }
 
-.hero-controls {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 2rem;
-  z-index: 10;
-}
+
 
 
 .hero-indicators {
