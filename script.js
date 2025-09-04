@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Auto-slide hero carousel
-    setInterval(nextHeroSlide, 6000);
+    setInterval(nextHeroSlide, 10000);
 
     // Store Carousel functionality
     const storeSlides = document.querySelectorAll('.carousel-slide');
@@ -146,5 +146,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Auto-slide store carousel
-    setInterval(nextStoreSlide, 5000);
+    setInterval(nextStoreSlide, 10000);
 });
