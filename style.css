@@ -607,13 +607,13 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  height: 70vh;
+  width: 100%;
+  aspect-ratio: 16/9;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  background: var(--bg-primary);
 }
 
 .hero-banner {
-  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -621,40 +621,9 @@ body {
 .banner-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  opacity: 1;
-  transition: opacity 0.8s ease-in-out;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.banner-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-}
-
-.banner-content h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.banner-content p {
-  font-size: 1.3rem;
-  color: var(--text-secondary);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  display: block;
 }
 
 .banner-placeholder {
@@ -1170,17 +1139,7 @@ body {
     max-width: 150px;
   }
 
-  .banner-content {
-    padding: 1.5rem;
-  }
-
-  .banner-content h2 {
-    font-size: 2rem;
-  }
-
-  .banner-content p {
-    font-size: 1rem;
-  }
+  
 
   .banner-placeholder h2 {
     font-size: 2rem;
@@ -1236,25 +1195,13 @@ body {
     max-width: 120px;
   }
 
-  .banner-content {
-    padding: 1rem;
-  }
-
-  .banner-content h2 {
-    font-size: 1.5rem;
-  }
-
-  .banner-content p {
-    font-size: 0.9rem;
-  }
+  
 
   .banner-placeholder h2 {
     font-size: 1.5rem;
   }
 
-  .hero {
-    height: 50vh;
-  }
+  
 
   .checkout-content {
     margin: 0.5rem;
