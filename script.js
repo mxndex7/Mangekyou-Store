@@ -1,7 +1,6 @@
 
 // Shopping Cart System
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let currentStep = 1;
 let orderNumber = '';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,19 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartDisplay();
     updateCartCount();
 
-    // Existing functionality
+    // Initialize functionality
     initializeFilters();
     initializeSearch();
     initializeCarousels();
-    initializePaymentMethods();
-    initializeMangaCards();
+    initializeProductCards();
     initializeSmoothScroll();
 });
 
 // Filter functionality
 function initializeFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const mangaCards = document.querySelectorAll('.manga-card');
+    const productCards = document.querySelectorAll('.product-card');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -30,13 +28,15 @@ function initializeFilters() {
             
             const filterValue = this.textContent.trim();
             
-            mangaCards.forEach(card => {
+            productCards.forEach(card => {
                 if (filterValue === 'Todos') {
                     card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else {
-                    const genres = card.getAttribute('data-genre');
-                    if (genres && genres.includes(filterValue)) {
+                    const category = card.getAttribute('data-category');
+                    if (category && category.includes(filterValue)) {
                         card.style.display = 'block';
+                        card.style.animation = 'fadeInUp 0.5s ease';
                     } else {
                         card.style.display = 'none';
                     }
@@ -49,17 +49,18 @@ function initializeFilters() {
 // Search functionality
 function initializeSearch() {
     const searchInput = document.querySelector('.search-input');
-    const mangaCards = document.querySelectorAll('.manga-card');
+    const productCards = document.querySelectorAll('.product-card');
 
     searchInput.addEventListener('input', function() {
         const searchTerm = this.value.toLowerCase();
         
-        mangaCards.forEach(card => {
-            const title = card.querySelector('.manga-title').textContent.toLowerCase();
-            const genre = card.querySelector('.manga-genre').textContent.toLowerCase();
+        productCards.forEach(card => {
+            const title = card.querySelector('.product-title').textContent.toLowerCase();
+            const category = card.querySelector('.product-category').textContent.toLowerCase();
             
-            if (title.includes(searchTerm) || genre.includes(searchTerm)) {
+            if (title.includes(searchTerm) || category.includes(searchTerm)) {
                 card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.5s ease';
             } else {
                 card.style.display = 'none';
             }
@@ -95,47 +96,7 @@ function initializeCarousels() {
     });
 
     // Auto-slide hero carousel
-    setInterval(nextHeroSlide, 10000);
-
-    // Store Carousel
-    const storeSlides = document.querySelectorAll('.carousel-slide');
-    const storeIndicators = document.querySelectorAll('.indicator');
-    const storePrevBtn = document.querySelector('.prev-btn');
-    const storeNextBtn = document.querySelector('.next-btn');
-    let currentStoreSlide = 0;
-
-    function showStoreSlide(index) {
-        storeSlides.forEach(slide => slide.classList.remove('active'));
-        storeIndicators.forEach(indicator => indicator.classList.remove('active'));
-        
-        if (storeSlides[index] && storeIndicators[index]) {
-            storeSlides[index].classList.add('active');
-            storeIndicators[index].classList.add('active');
-            currentStoreSlide = index;
-        }
-    }
-
-    function nextStoreSlide() {
-        currentStoreSlide = (currentStoreSlide + 1) % storeSlides.length;
-        showStoreSlide(currentStoreSlide);
-    }
-
-    function prevStoreSlide() {
-        currentStoreSlide = (currentStoreSlide - 1 + storeSlides.length) % storeSlides.length;
-        showStoreSlide(currentStoreSlide);
-    }
-
-    if (storeNextBtn && storePrevBtn) {
-        storeNextBtn.addEventListener('click', nextStoreSlide);
-        storePrevBtn.addEventListener('click', prevStoreSlide);
-    }
-
-    storeIndicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => showStoreSlide(index));
-    });
-
-    // Auto-slide store carousel
-    setInterval(nextStoreSlide, 10000);
+    setInterval(nextHeroSlide, 5000);
 }
 
 // Shopping Cart Functions
@@ -158,6 +119,7 @@ function addToCart(id, title, price, image) {
     updateCartDisplay();
     updateCartCount();
     showAddToCartAnimation(id);
+    showNotification('Produto adicionado ao carrinho!', 'success');
 }
 
 function removeFromCart(id) {
@@ -165,6 +127,7 @@ function removeFromCart(id) {
     saveCart();
     updateCartDisplay();
     updateCartCount();
+    showNotification('Produto removido do carrinho', 'info');
 }
 
 function updateQuantity(id, newQuantity) {
@@ -209,7 +172,6 @@ function updateCartDisplay() {
     } else {
         cartItems.innerHTML = cart.map(item => `
             <div class="cart-item">
-                <img src="${item.image}" alt="${item.title}" class="cart-item-image">
                 <div class="cart-item-details">
                     <div class="cart-item-title">${item.title}</div>
                     <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
@@ -235,11 +197,12 @@ function showAddToCartAnimation(id) {
     const button = document.querySelector(`button[onclick*="addToCart(${id}"]`);
     if (button) {
         button.classList.add('adding');
+        const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
         
         setTimeout(() => {
             button.classList.remove('adding');
-            button.innerHTML = '<i class="fas fa-cart-plus"></i> Adicionar ao Carrinho';
+            button.innerHTML = originalText;
         }, 1500);
     }
 }
@@ -260,78 +223,11 @@ function openCheckout() {
     const checkoutModal = document.getElementById('checkoutModal');
     checkoutModal.classList.add('show');
     updateOrderSummary();
-    resetCheckoutForm();
 }
 
 function closeCheckout() {
     const checkoutModal = document.getElementById('checkoutModal');
     checkoutModal.classList.remove('show');
-    currentStep = 1;
-    updateStepDisplay();
-}
-
-function nextStep() {
-    if (validateCurrentStep()) {
-        currentStep++;
-        updateStepDisplay();
-    }
-}
-
-function prevStep() {
-    currentStep--;
-    updateStepDisplay();
-}
-
-function updateStepDisplay() {
-    // Update step indicators
-    document.querySelectorAll('.step').forEach((step, index) => {
-        step.classList.toggle('active', index + 1 <= currentStep);
-    });
-    
-    // Update form steps
-    document.querySelectorAll('.form-step').forEach((step, index) => {
-        step.classList.toggle('active', index + 1 === currentStep);
-    });
-}
-
-function validateCurrentStep() {
-    const currentFormStep = document.getElementById(`step${currentStep}`);
-    const requiredInputs = currentFormStep.querySelectorAll('input[required], select[required]');
-    
-    for (let input of requiredInputs) {
-        if (!input.value.trim()) {
-            input.focus();
-            showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
-            return false;
-        }
-    }
-    
-    // Additional validation for specific steps
-    if (currentStep === 1) {
-        const email = document.getElementById('email').value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            document.getElementById('email').focus();
-            showNotification('Por favor, insira um e-mail válido.', 'error');
-            return false;
-        }
-    }
-    
-    return true;
-}
-
-function resetCheckoutForm() {
-    currentStep = 1;
-    updateStepDisplay();
-    
-    // Clear all form fields
-    document.querySelectorAll('.checkout-form input, .checkout-form select').forEach(input => {
-        input.value = '';
-    });
-    
-    // Reset payment method to credit card
-    document.getElementById('creditCard').checked = true;
-    toggleCardDetails();
 }
 
 function updateOrderSummary() {
@@ -340,7 +236,7 @@ function updateOrderSummary() {
     const summaryTotal = document.getElementById('summaryTotal');
     
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = 15.00;
+    const shipping = 25.00;
     const total = subtotal + shipping;
     
     summaryItems.innerHTML = cart.map(item => `
@@ -354,51 +250,16 @@ function updateOrderSummary() {
     summaryTotal.textContent = total.toFixed(2).replace('.', ',');
 }
 
-// Payment Methods
-function initializePaymentMethods() {
-    const paymentMethods = document.querySelectorAll('input[name="payment"]');
-    
-    paymentMethods.forEach(method => {
-        method.addEventListener('change', toggleCardDetails);
-    });
-}
-
-function toggleCardDetails() {
-    const cardDetails = document.getElementById('cardDetails');
-    const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
-    
-    if (selectedPayment === 'creditCard' || selectedPayment === 'debitCard') {
-        cardDetails.style.display = 'block';
-    } else {
-        cardDetails.style.display = 'none';
-    }
-}
-
-// CEP Search (Mock function)
-function searchCEP() {
-    const cep = document.getElementById('cep').value.replace(/\D/g, '');
-    
-    if (cep.length !== 8) {
-        showNotification('CEP deve ter 8 dígitos.', 'error');
-        return;
-    }
-    
-    // Mock API call - in real implementation, use ViaCEP or similar service
-    showNotification('Buscando CEP...', 'info');
-    
-    setTimeout(() => {
-        // Mock data
-        document.getElementById('street').value = 'Rua das Flores';
-        document.getElementById('neighborhood').value = 'Centro';
-        document.getElementById('city').value = 'Recife';
-        document.getElementById('state').value = 'PE';
-        showNotification('CEP encontrado!', 'success');
-    }, 1000);
-}
-
 // Complete Order
 function completeOrder() {
-    if (!validateCurrentStep()) return;
+    const customerName = document.getElementById('customerName').value;
+    const customerEmail = document.getElementById('customerEmail').value;
+    const customerPhone = document.getElementById('customerPhone').value;
+    
+    if (!customerName || !customerEmail || !customerPhone) {
+        showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
+        return;
+    }
     
     const completeBtn = document.querySelector('.complete-order-btn');
     completeBtn.innerHTML = '<div class="spinner"></div> Processando...';
@@ -416,7 +277,7 @@ function completeOrder() {
 }
 
 function generateOrderNumber() {
-    return 'MV' + Date.now().toString().slice(-6);
+    return 'MK' + Date.now().toString().slice(-6);
 }
 
 function showSuccessModal() {
@@ -467,6 +328,7 @@ function showNotification(message, type = 'info') {
         gap: 0.5rem;
         animation: slideIn 0.3s ease;
         max-width: 300px;
+        border: 1px solid var(--border-color);
     `;
     
     document.body.appendChild(notification);
@@ -493,34 +355,52 @@ function getNotificationIcon(type) {
 
 function getNotificationColor(type) {
     switch (type) {
-        case 'success': return 'var(--success-color)';
-        case 'error': return 'var(--error-color)';
-        case 'warning': return 'var(--warning-color)';
-        default: return 'var(--accent-purple)';
+        case 'success': return 'var(--accent-red)';
+        case 'error': return '#ff4444';
+        case 'warning': return '#ffaa00';
+        default: return 'var(--accent-red)';
     }
 }
 
-// Manga Cards Enhancement
-function initializeMangaCards() {
-    const mangaCards = document.querySelectorAll('.manga-card');
+// Product Cards Enhancement
+function initializeProductCards() {
+    const productCards = document.querySelectorAll('.product-card');
+    const categoryCards = document.querySelectorAll('.category-card');
     
-    mangaCards.forEach(card => {
+    // Product cards animations
+    productCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
+            this.style.transform = 'translateY(-10px) scale(1.02)';
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
+    });
+    
+    // Category cards animations
+    categoryCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
         
-        // Add click event for manga details (future implementation)
-        card.addEventListener('click', function(e) {
-            // Don't trigger if clicking the add to cart button
-            if (!e.target.closest('.add-to-cart-btn')) {
-                const title = this.querySelector('.manga-title').textContent;
-                console.log('Manga clicked:', title);
-                // Here you could open a modal with manga details
-            }
+        card.addEventListener('click', function() {
+            const categoryName = this.querySelector('h3').textContent;
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            
+            // Filter products by category
+            setTimeout(() => {
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                const targetBtn = Array.from(filterBtns).find(btn => 
+                    btn.textContent.includes(categoryName.split(' ')[0])
+                );
+                
+                if (targetBtn) {
+                    targetBtn.click();
+                }
+            }, 500);
         });
     });
 }
@@ -533,29 +413,13 @@ function initializeSmoothScroll() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
     });
 }
-
-// Load More Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const loadMoreBtn = document.querySelector('.load-more-btn');
-    
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-            this.innerHTML = '<div class="spinner"></div> Carregando...';
-            
-            // Simulate loading more mangas
-            setTimeout(() => {
-                this.textContent = 'Carregar Mais';
-                showNotification('Mais mangás carregados!', 'success');
-            }, 1500);
-        });
-    }
-});
 
 // Add CSS animations for notifications
 const style = document.createElement('style');
@@ -581,35 +445,29 @@ style.textContent = `
             opacity: 0;
         }
     }
+    
+    .product-card, .category-card {
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 `;
 document.head.appendChild(style);
 
-// Input Formatting
+// Input Formatting for checkout
 document.addEventListener('DOMContentLoaded', function() {
-    // CPF formatting
-    const cpfInput = document.getElementById('cpf');
-    if (cpfInput) {
-        cpfInput.addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            this.value = value;
-        });
-    }
-    
-    // CEP formatting
-    const cepInput = document.getElementById('cep');
-    if (cepInput) {
-        cepInput.addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            value = value.replace(/(\d{5})(\d)/, '$1-$2');
-            this.value = value;
-        });
-    }
-    
     // Phone formatting
-    const phoneInput = document.getElementById('phone');
+    const phoneInput = document.getElementById('customerPhone');
     if (phoneInput) {
         phoneInput.addEventListener('input', function() {
             let value = this.value.replace(/\D/g, '');
@@ -618,24 +476,52 @@ document.addEventListener('DOMContentLoaded', function() {
             this.value = value;
         });
     }
+});
+
+// Scroll animations
+window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('section');
+    const scrollPosition = window.pageYOffset + window.innerHeight;
     
-    // Card number formatting
-    const cardNumberInput = document.getElementById('cardNumber');
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            value = value.replace(/(\d{4})/g, '$1 ').trim();
-            this.value = value;
-        });
+    sections.forEach(section => {
+        if (scrollPosition > section.offsetTop + 100) {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+// Initialize scroll animations
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'all 0.6s ease';
+    });
+    
+    // Show first section immediately
+    if (sections[0]) {
+        sections[0].style.opacity = '1';
+        sections[0].style.transform = 'translateY(0)';
     }
-    
-    // Expiry date formatting
-    const expiryInput = document.getElementById('expiryDate');
-    if (expiryInput) {
-        expiryInput.addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            value = value.replace(/(\d{2})(\d)/, '$1/$2');
-            this.value = value;
+});
+
+// Performance optimization - Lazy loading for images
+document.addEventListener('DOMContentLoaded', function() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('.image-placeholder').forEach(img => {
+            imageObserver.observe(img);
         });
     }
 });

@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MangaVerso - Loja de Mangás</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>MANGEKYOU STORE - Equipamentos de Artes Marciais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -15,19 +15,22 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <img src="assets/logo.png" alt="MangaVerso" class="logo-img">
+        <div class="logo-placeholder">
+          <span>MANGEKYOU</span>
+          <span class="logo-subtitle">STORE</span>
+        </div>
       </div>
       <nav class="nav">
         <ul>
           <li><a href="#home">Início</a></li>
-          <li><a href="#catalog">Catálogo</a></li>
-          <li><a href="#popular">Populares</a></li>
-          <li><a href="#recent">Recentes</a></li>
+          <li><a href="#categories">Categorias</a></li>
+          <li><a href="#products">Produtos</a></li>
+          <li><a href="#about">Sobre</a></li>
         </ul>
       </nav>
       <div class="header-actions">
         <div class="search-box">
-          <input type="text" placeholder="Buscar mangás..." class="search-input">
+          <input type="text" placeholder="Buscar produtos..." class="search-input">
           <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <button class="cart-btn" onclick="toggleCart()">
@@ -75,207 +78,43 @@
         </button>
       </div>
       
-      <div class="checkout-steps">
-        <div class="step active" data-step="1">
-          <span class="step-number">1</span>
-          <span class="step-title">Dados Pessoais</span>
-        </div>
-        <div class="step" data-step="2">
-          <span class="step-number">2</span>
-          <span class="step-title">Endereço</span>
-        </div>
-        <div class="step" data-step="3">
-          <span class="step-number">3</span>
-          <span class="step-title">Pagamento</span>
-        </div>
-      </div>
-
       <div class="checkout-form">
-        <!-- Step 1: Personal Data -->
-        <div class="form-step active" id="step1">
-          <h4>Dados Pessoais</h4>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullName">Nome Completo *</label>
-              <input type="text" id="fullName" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">E-mail *</label>
-              <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Telefone *</label>
-              <input type="tel" id="phone" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cpf">CPF *</label>
-              <input type="text" id="cpf" required>
-            </div>
-            <div class="form-group">
-              <label for="birthDate">Data de Nascimento</label>
-              <input type="date" id="birthDate">
-            </div>
-          </div>
-          <button class="next-step-btn" onclick="nextStep()">Continuar</button>
+        <div class="form-group">
+          <label for="customerName">Nome Completo *</label>
+          <input type="text" id="customerName" required>
         </div>
-
-        <!-- Step 2: Address -->
-        <div class="form-step" id="step2">
-          <h4>Endereço de Entrega</h4>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cep">CEP *</label>
-              <input type="text" id="cep" required>
+        <div class="form-group">
+          <label for="customerEmail">E-mail *</label>
+          <input type="email" id="customerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="customerPhone">Telefone *</label>
+          <input type="tel" id="customerPhone" required>
+        </div>
+        
+        <div class="order-summary">
+          <h4>Resumo do Pedido</h4>
+          <div class="summary-items" id="summaryItems"></div>
+          <div class="summary-totals">
+            <div class="summary-line">
+              <span>Subtotal:</span>
+              <span>R$ <span id="summarySubtotal">0,00</span></span>
             </div>
-            <button type="button" class="search-cep-btn" onclick="searchCEP()">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="street">Rua *</label>
-              <input type="text" id="street" required>
+            <div class="summary-line">
+              <span>Frete:</span>
+              <span>R$ <span id="summaryShipping">25,00</span></span>
             </div>
-            <div class="form-group">
-              <label for="number">Número *</label>
-              <input type="text" id="number" required>
+            <div class="summary-line total">
+              <span>Total:</span>
+              <span>R$ <span id="summaryTotal">0,00</span></span>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="complement">Complemento</label>
-              <input type="text" id="complement">
-            </div>
-            <div class="form-group">
-              <label for="neighborhood">Bairro *</label>
-              <input type="text" id="neighborhood" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="city">Cidade *</label>
-              <input type="text" id="city" required>
-            </div>
-            <div class="form-group">
-              <label for="state">Estado *</label>
-              <select id="state" required>
-                <option value="">Selecione</option>
-                <option value="PE">Pernambuco</option>
-                <option value="SP">São Paulo</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <!-- More states... -->
-              </select>
-            </div>
-          </div>
-          <div class="form-actions">
-            <button class="prev-step-btn" onclick="prevStep()">Voltar</button>
-            <button class="next-step-btn" onclick="nextStep()">Continuar</button>
           </div>
         </div>
 
-        <!-- Step 3: Payment -->
-        <div class="form-step" id="step3">
-          <h4>Forma de Pagamento</h4>
-          <div class="payment-methods">
-            <div class="payment-method">
-              <input type="radio" id="creditCard" name="payment" value="creditCard" checked>
-              <label for="creditCard">
-                <i class="fas fa-credit-card"></i>
-                Cartão de Crédito
-              </label>
-            </div>
-            <div class="payment-method">
-              <input type="radio" id="debitCard" name="payment" value="debitCard">
-              <label for="debitCard">
-                <i class="fas fa-credit-card"></i>
-                Cartão de Débito
-              </label>
-            </div>
-            <div class="payment-method">
-              <input type="radio" id="pix" name="payment" value="pix">
-              <label for="pix">
-                <i class="fas fa-qrcode"></i>
-                PIX
-              </label>
-            </div>
-            <div class="payment-method">
-              <input type="radio" id="boleto" name="payment" value="boleto">
-              <label for="boleto">
-                <i class="fas fa-barcode"></i>
-                Boleto Bancário
-              </label>
-            </div>
-          </div>
-
-          <div class="card-details" id="cardDetails">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cardNumber">Número do Cartão *</label>
-                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cardName">Nome no Cartão *</label>
-                <input type="text" id="cardName">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="expiryDate">Validade *</label>
-                <input type="text" id="expiryDate" placeholder="MM/AA">
-              </div>
-              <div class="form-group">
-                <label for="cvv">CVV *</label>
-                <input type="text" id="cvv" placeholder="000">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="installments">Parcelas</label>
-                <select id="installments">
-                  <option value="1">1x sem juros</option>
-                  <option value="2">2x sem juros</option>
-                  <option value="3">3x sem juros</option>
-                  <option value="4">4x com juros</option>
-                  <option value="5">5x com juros</option>
-                  <option value="6">6x com juros</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="order-summary">
-            <h4>Resumo do Pedido</h4>
-            <div class="summary-items" id="summaryItems"></div>
-            <div class="summary-totals">
-              <div class="summary-line">
-                <span>Subtotal:</span>
-                <span>R$ <span id="summarySubtotal">0,00</span></span>
-              </div>
-              <div class="summary-line">
-                <span>Frete:</span>
-                <span>R$ <span id="summaryShipping">15,00</span></span>
-              </div>
-              <div class="summary-line total">
-                <span>Total:</span>
-                <span>R$ <span id="summaryTotal">0,00</span></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button class="prev-step-btn" onclick="prevStep()">Voltar</button>
-            <button class="complete-order-btn" onclick="completeOrder()">
-              <i class="fas fa-lock"></i>
-              Finalizar Pedido
-            </button>
-          </div>
-        </div>
+        <button class="complete-order-btn" onclick="completeOrder()">
+          <i class="fas fa-lock"></i>
+          Finalizar Pedido
+        </button>
       </div>
     </div>
   </div>
@@ -294,263 +133,316 @@
   </div>
 
   <main class="main">
-    <section class="hero">
+    <!-- Hero Section with Banner Carousel -->
+    <section class="hero" id="home">
       <div class="hero-carousel">
         <div class="hero-slide active">
-          <img src="assets/b1.jpg" alt="Banner 1" class="hero-image">
+          <div class="banner-placeholder">
+            <h2>Equipamentos Profissionais</h2>
+            <p>Para todas as artes marciais</p>
+          </div>
         </div>
         <div class="hero-slide">
-          <img src="assets/B2.jpg" alt="Banner 2" class="hero-image">
+          <div class="banner-placeholder">
+            <h2>Kimonos de Alta Qualidade</h2>
+            <p>Tradição e resistência</p>
+          </div>
+        </div>
+        <div class="hero-slide">
+          <div class="banner-placeholder">
+            <h2>Proteções e Luvas</h2>
+            <p>Segurança em primeiro lugar</p>
+          </div>
         </div>
       </div>
       
       <div class="hero-indicators">
         <span class="hero-indicator active" data-slide="0"></span>
         <span class="hero-indicator" data-slide="1"></span>
+        <span class="hero-indicator" data-slide="2"></span>
       </div>
     </section>
 
-    <section class="store-section" id="store">
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
       <div class="container">
-        <h2 class="section-title">Nossa Loja</h2>
+        <h2 class="section-title">Categorias</h2>
         
-        <div class="store-info">
-          <div class="store-details">
-            <div class="store-info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Localização</h4>
-                <p>Plaza Shopping. Rua Dr. João Santos Filho, 255<br>Parnamirim, Recife - PE, 52060-615</p>
-              </div>
+        <div class="categories-grid">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-fist-raised"></i>
             </div>
-            
-            <div class="store-info-item">
-              <i class="fas fa-clock"></i>
-              <div>
-                <h4>Horários</h4>
-                <p>Segunda à Sexta: 9h às 18h<br>Sábados: 9h às 16h<br>Domingos: Fechado</p>
-              </div>
-            </div>
-            
-            <div class="store-info-item">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Contatos</h4>
-                <p>Telefone: (81) 9745-6459<br>WhatsApp: (81) 99745-6459<br>Email: xmendex30@gmail.com</p>
-              </div>
-            </div>
+            <h3>Karatê</h3>
+            <p>Kimonos, faixas, proteções</p>
           </div>
-
-          <div class="store-carousel">
-            <div class="carousel-container">
-              <div class="carousel-slide active">
-                <img src="assets/c1.png" alt="Interior da loja" class="carousel-image">
-              </div>
-              <div class="carousel-slide">
-                <img src="assets/c2.jpg" alt="Estante de mangás" class="carousel-image">
-              </div>
-              <div class="carousel-slide">
-                <img src="assets/c3.jpg" alt="Área de leitura" class="carousel-image">
-              </div>
+          
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-running"></i>
             </div>
-            <div class="carousel-controls">
-              <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-              <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="carousel-indicators">
-              <span class="indicator active" data-slide="0"></span>
-              <span class="indicator" data-slide="1"></span>
-              <span class="indicator" data-slide="2"></span>
-            </div>
+            <h3>Jiu-Jitsu</h3>
+            <p>Kimonos, rashguards, shorts</p>
           </div>
-        </div>
-
-        <div class="store-description">
-          <p>Bem-vindos ao MangaVerso! Somos uma loja especializada em mangás com mais de 10 anos de experiência no mercado. Nossa paixão por histórias japonesas nos motivou a criar um espaço onde fãs de todas as idades podem encontrar seus títulos favoritos e descobrir novas aventuras.</p>
-          <p>Oferecemos um acervo completo com os lançamentos mais recentes e clássicos atemporais, além de um ambiente acolhedor para você explorar e se inspirar. Nossa equipe é formada por verdadeiros otakus que estão sempre prontos para ajudar você a encontrar sua próxima leitura favorita!</p>
+          
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-hand-rock"></i>
+            </div>
+            <h3>MMA</h3>
+            <p>Luvas, shorts, proteções</p>
+          </div>
+          
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Taekwondo</h3>
+            <p>Doboks, proteções, equipamentos</p>
+          </div>
+          
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <h3>Muay Thai</h3>
+            <p>Shorts, luvas, caneleiras</p>
+          </div>
+          
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Boxe</h3>
+            <p>Luvas, sacos, equipamentos</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="catalog" id="catalog">
+    <!-- Products Section -->
+    <section class="products" id="products">
       <div class="container">
-        <h2 class="section-title">Catálogo de Mangás</h2>
+        <h2 class="section-title">Produtos em Destaque</h2>
         
         <div class="filters">
           <button class="filter-btn active">Todos</button>
-          <button class="filter-btn">Ação</button>
-          <button class="filter-btn">Romance</button>
-          <button class="filter-btn">Aventura</button>
-          <button class="filter-btn">Drama</button>
-          <button class="filter-btn">Comédia</button>
+          <button class="filter-btn">Kimonos</button>
+          <button class="filter-btn">Luvas</button>
+          <button class="filter-btn">Proteções</button>
+          <button class="filter-btn">Acessórios</button>
         </div>
 
-        <div class="manga-grid">
-          <div class="manga-card" data-genre="Ação,Aventura">
-            <div class="manga-cover">
-              <img src="assets/onepiece103.jpg" alt="One Piece Volume 103" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">One Piece</h3>
-              <p class="manga-genre">Ação, Aventura</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 9.2</span>
-                <span class="chapters">Vol. 103</span>
+        <div class="products-grid">
+          <div class="product-card" data-category="Kimonos">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <i class="fas fa-tshirt"></i>
+                <span>Kimono Karatê</span>
               </div>
-              <div class="manga-price">R$ 24,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(1, 'One Piece Vol. 103', 24.90, 'assets/onepiece103.jpg')">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Kimono Karatê Tradicional</h3>
+              <p class="product-category">Karatê</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="rating-count">(127 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 189,90</div>
+              <button class="add-to-cart-btn" onclick="addToCart(1, 'Kimono Karatê Tradicional', 189.90, 'placeholder')">
                 <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
               </button>
             </div>
           </div>
 
-          <div class="manga-card" data-genre="Ação,Aventura">
-            <div class="manga-cover">
-              <img src="assets/one17.jpg" alt="One Punch Man Volume 17" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">One Punch Man</h3>
-              <p class="manga-genre">Ação, Aventura</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 9.2</span>
-                <span class="chapters">Vol. 17</span>
+          <div class="product-card" data-category="Luvas">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <i class="fas fa-hand-rock"></i>
+                <span>Luvas MMA</span>
               </div>
-              <div class="manga-price">R$ 22,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(2, 'One Punch Man Vol. 17', 22.90, 'assets/one17.jpg')">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Luvas MMA Profissional</h3>
+              <p class="product-category">MMA</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="rating-count">(89 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 299,90</div>
+              <button class="add-to-cart-btn" onclick="addToCart(2, 'Luvas MMA Profissional', 299.90, 'placeholder')">
                 <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
               </button>
             </div>
           </div>
 
-          <div class="manga-card" data-genre="Ação,Sobrenatural">
-            <div class="manga-cover">
-              <img src="assets/bleach57.jpg" alt="Bleach Volume 57" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Bleach</h3>
-              <p class="manga-genre">Ação, Sobrenatural</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 8.8</span>
-                <span class="chapters">Vol. 57</span>
+          <div class="product-card" data-category="Proteções">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <i class="fas fa-shield-alt"></i>
+                <span>Protetor Bucal</span>
               </div>
-              <div class="manga-price">R$ 26,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(3, 'Bleach Vol. 57', 26.90, 'assets/bleach57.jpg')">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Protetor Bucal Premium</h3>
+              <p class="product-category">Proteções</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="rating-count">(201 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 79,90</div>
+              <button class="add-to-cart-btn" onclick="addToCart(3, 'Protetor Bucal Premium', 79.90, 'placeholder')">
                 <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
               </button>
             </div>
           </div>
 
-          <div class="manga-card" data-genre="Esportes,Drama">
-            <div class="manga-cover">
-              <img src="assets/blue.png" alt="Blue Lock Volume 25" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Blue Lock</h3>
-              <p class="manga-genre">Esportes, Drama</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 8.9</span>
-                <span class="chapters">Vol. 25</span>
+          <div class="product-card" data-category="Kimonos">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <i class="fas fa-tshirt"></i>
+                <span>Kimono Jiu-Jitsu</span>
               </div>
-              <div class="manga-price">R$ 28,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(4, 'Blue Lock Vol. 25', 28.90, 'assets/blue.png')">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Kimono Jiu-Jitsu Competition</h3>
+              <p class="product-category">Jiu-Jitsu</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="rating-count">(156 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 349,90</div>
+              <button class="add-to-cart-btn" onclick="addToCart(4, 'Kimono Jiu-Jitsu Competition', 349.90, 'placeholder')">
                 <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
               </button>
             </div>
           </div>
 
-          <div class="manga-card" data-genre="Ação,Super-heróis">
-            <div class="manga-cover">
-              <img src="assets/boku11.jpg" alt="Boku no Hero Academia Volume 11" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Boku no Hero Academia</h3>
-              <p class="manga-genre">Ação, Super-heróis</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 8.7</span>
-                <span class="chapters">Vol. 11</span>
+          <div class="product-card" data-category="Luvas">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <i class="fas fa-hand-rock"></i>
+                <span>Luvas Boxe</span>
               </div>
-              <div class="manga-price">R$ 25,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(5, 'Boku no Hero Academia Vol. 11', 25.90, 'assets/boku11.jpg')">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Luvas Boxe 16oz</h3>
+              <p class="product-category">Boxe</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="rating-count">(243 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 259,90</div>
+              <button class="add-to-cart-btn" onclick="addToCart(5, 'Luvas Boxe 16oz', 259.90, 'placeholder')">
                 <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
               </button>
             </div>
           </div>
 
-          <div class="manga-card" data-genre="Suspense,Sobrenatural">
-            <div class="manga-cover">
-              <img src="assets/death12.jpg" alt="Death Note Volume 12" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Death Note</h3>
-              <p class="manga-genre">Suspense, Sobrenatural</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 9.1</span>
-                <span class="chapters">Vol. 12</span>
+          <div class="product-card" data-category="Acessórios">
+            <div class="product-image">
+              <div class="image-placeholder">
+                <i class="fas fa-belt"></i>
+                <span>Faixa</span>
               </div>
-              <div class="manga-price">R$ 23,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(6, 'Death Note Vol. 12', 23.90, 'assets/death12.jpg')">
-                <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
-              </button>
             </div>
-          </div>
-
-          <div class="manga-card" data-genre="Ação,Fantasia">
-            <div class="manga-cover">
-              <img src="assets/gatchiakuta10.jpg" alt="Gachiakuta Volume 10" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Gachiakuta</h3>
-              <p class="manga-genre">Ação, Fantasia</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 8.4</span>
-                <span class="chapters">Vol. 10</span>
+            <div class="product-info">
+              <h3 class="product-title">Faixa Karatê Algodão</h3>
+              <p class="product-category">Acessórios</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="rating-count">(98 avaliações)</span>
               </div>
-              <div class="manga-price">R$ 27,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(7, 'Gachiakuta Vol. 10', 27.90, 'assets/gatchiakuta10.jpg')">
-                <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
-              </button>
-            </div>
-          </div>
-
-          <div class="manga-card" data-genre="Ação,Comédia">
-            <div class="manga-cover">
-              <img src="assets/sakamoto6.jpg" alt="Sakamoto Days Volume 6" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Sakamoto Days</h3>
-              <p class="manga-genre">Ação, Comédia</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 8.6</span>
-                <span class="chapters">Vol. 6</span>
-              </div>
-              <div class="manga-price">R$ 24,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(8, 'Sakamoto Days Vol. 6', 24.90, 'assets/sakamoto6.jpg')">
-                <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
-              </button>
-            </div>
-          </div>
-
-          <div class="manga-card" data-genre="Ação,Comédia">
-            <div class="manga-cover">
-              <img src="assets/sakamoto7.jpg" alt="Sakamoto Days Volume 7" class="manga-image">
-            </div>
-            <div class="manga-info">
-              <h3 class="manga-title">Sakamoto Days</h3>
-              <p class="manga-genre">Ação, Comédia</p>
-              <div class="manga-stats">
-                <span class="rating"><i class="fas fa-star"></i> 8.6</span>
-                <span class="chapters">Vol. 7</span>
-              </div>
-              <div class="manga-price">R$ 24,90</div>
-              <button class="add-to-cart-btn" onclick="addToCart(9, 'Sakamoto Days Vol. 7', 24.90, 'assets/sakamoto7.jpg')">
+              <div class="product-price">R$ 39,90</div>
+              <button class="add-to-cart-btn" onclick="addToCart(6, 'Faixa Karatê Algodão', 39.90, 'placeholder')">
                 <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
               </button>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="load-more">
-          <button class="load-more-btn">Carregar Mais</button>
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">Sobre a MANGEKYOU STORE</h2>
+        
+        <div class="about-content">
+          <div class="about-text">
+            <p>A MANGEKYOU STORE nasceu da necessidade de reunir em um só lugar equipamentos, vestimentas e itens para as principais artes marciais mundiais. Entendemos a dificuldade que atletas enfrentam para encontrar a loja ideal que atenda todas as suas necessidades.</p>
+            
+            <p>Nossa missão é oferecer produtos de alta qualidade, testados e aprovados por profissionais das artes marciais, com a comodidade de comprar tudo em um só lugar.</p>
+            
+            <div class="about-features">
+              <div class="feature">
+                <i class="fas fa-shipping-fast"></i>
+                <div>
+                  <h4>Entrega Rápida</h4>
+                  <p>Produtos enviados em até 24h</p>
+                </div>
+              </div>
+              
+              <div class="feature">
+                <i class="fas fa-medal"></i>
+                <div>
+                  <h4>Qualidade Premium</h4>
+                  <p>Produtos testados por profissionais</p>
+                </div>
+              </div>
+              
+              <div class="feature">
+                <i class="fas fa-headset"></i>
+                <div>
+                  <h4>Suporte Especializado</h4>
+                  <p>Atendimento por especialistas em artes marciais</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="about-image">
+            <div class="image-placeholder">
+              <i class="fas fa-store"></i>
+              <span>Nossa Loja</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -560,32 +452,57 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>MangaVerso</h3>
-          <p>Seu universo de mangás favoritos em um só lugar.</p>
+          <h3>MANGEKYOU STORE</h3>
+          <p>Sua loja completa de equipamentos para artes marciais. Qualidade, tradição e inovação em um só lugar.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
+        
         <div class="footer-section">
-          <h4>Links</h4>
+          <h4>Categorias</h4>
           <ul>
-            <li><a href="#home">Início</a></li>
-            <li><a href="#catalog">Catálogo</a></li>
-            <li><a href="#popular">Populares</a></li>
+            <li><a href="#karate">Karatê</a></li>
+            <li><a href="#jiujitsu">Jiu-Jitsu</a></li>
+            <li><a href="#mma">MMA</a></li>
+            <li><a href="#taekwondo">Taekwondo</a></li>
+            <li><a href="#muaythai">Muay Thai</a></li>
+            <li><a href="#boxe">Boxe</a></li>
           </ul>
         </div>
+        
         <div class="footer-section">
           <h4>Atendimento</h4>
-          <p>Segunda à Sexta: 9h às 18h</p>
-          <p>contato@mangaverso.com</p>
-          <p>(81) 99745-6459</p>
+          <div class="contact-info">
+            <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+            <p><i class="fas fa-envelope"></i> contato@mangekyoustore.com</p>
+            <p><i class="fas fa-clock"></i> Seg-Sex: 8h às 18h</p>
+            <p><i class="fas fa-clock"></i> Sáb: 8h às 14h</p>
+          </div>
         </div>
+        
         <div class="footer-section">
-          <h4>Segurança</h4>
-          <p>Compra 100% segura</p>
-          <p>Seus dados protegidos</p>
-          <p>Entrega garantida</p>
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#politica">Política de Privacidade</a></li>
+            <li><a href="#termos">Termos de Uso</a></li>
+            <li><a href="#trocas">Trocas e Devoluções</a></li>
+            <li><a href="#frete">Frete e Entrega</a></li>
+          </ul>
         </div>
       </div>
+      
       <div class="footer-bottom">
-        <p>&copy; 2025 MangaVerso. Todos os direitos reservados.</p>
+        <p>&copy; 2025 MANGEKYOU STORE. Todos os direitos reservados.</p>
+        <div class="payment-methods">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-paypal"></i>
+          <i class="fab fa-pix"></i>
+        </div>
       </div>
     </div>
   </footer>
