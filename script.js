@@ -68,35 +68,9 @@ function initializeSearch() {
     });
 }
 
-// Carousel functionality
+// Carousel functionality (removed - using static banner now)
 function initializeCarousels() {
-    // Hero Carousel
-    const heroSlides = document.querySelectorAll('.hero-slide');
-    const heroIndicators = document.querySelectorAll('.hero-indicator');
-    let currentHeroSlide = 0;
-
-    function showHeroSlide(index) {
-        heroSlides.forEach(slide => slide.classList.remove('active'));
-        heroIndicators.forEach(indicator => indicator.classList.remove('active'));
-        
-        if (heroSlides[index] && heroIndicators[index]) {
-            heroSlides[index].classList.add('active');
-            heroIndicators[index].classList.add('active');
-            currentHeroSlide = index;
-        }
-    }
-
-    function nextHeroSlide() {
-        currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
-        showHeroSlide(currentHeroSlide);
-    }
-
-    heroIndicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => showHeroSlide(index));
-    });
-
-    // Auto-slide hero carousel
-    setInterval(nextHeroSlide, 5000);
+    // Carousel functionality removed - using static banner
 }
 
 // Shopping Cart Functions
