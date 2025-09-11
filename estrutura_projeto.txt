@@ -1,0 +1,135 @@
+
+MANGEKYOU STORE - ESTRUTURA DO PROJETO
+====================================
+
+VISÃO GERAL
+-----------
+Este é um projeto de e-commerce para equipamentos de artes marciais, desenvolvido com HTML, CSS e JavaScript puro.
+
+ESTRUTURA DE ARQUIVOS
+--------------------
+├── index.html              # Página principal do site
+├── style.css               # Estilos CSS principais
+├── script.js               # Funcionalidades JavaScript
+├── estrutura_projeto.txt   # Esta documentação
+├── .replit                 # Configuração do Replit
+├── .config/                # Configurações do servidor
+│   └── static-web-server.toml
+├── midia/                  # Imagens dos produtos e da loja
+│   ├── logo.png
+│   ├── banner.jpg
+│   ├── loja.jpg
+│   ├── kimono karate shotokan.jpg
+│   ├── luva karate.jpg
+│   ├── luva mma2.jpg
+│   ├── bandagem acessorio.jpg
+│   ├── prajied muay thai.jpg
+│   ├── short mma.jpg
+│   ├── short mma 2.jpg
+│   └── short mma 3.jpg
+├── luva muay thai.jpg      # Imagem de produto (raiz)
+└── shortsmuaythai.jpg      # Imagem de produto (raiz)
+
+COMPONENTES PRINCIPAIS
+---------------------
+
+1. CABEÇALHO (Header)
+   - Logo da marca
+   - Menu de navegação
+   - Barra de pesquisa
+   - Botão do carrinho de compras
+
+2. SEÇÕES PRINCIPAIS
+   - Hero/Banner: Imagem de destaque
+   - Produtos: Grade de produtos com filtros
+   - Sobre: Informações da empresa
+
+3. RODAPÉ (Footer)
+   - Links institucionais
+   - Informações de contato
+   - Redes sociais
+   - Métodos de pagamento
+
+4. SISTEMA DE CARRINHO
+   - Sidebar deslizante
+   - Adicionar/remover produtos
+   - Controle de quantidade
+   - Cálculo de totais
+
+5. CHECKOUT
+   - Modal de finalização
+   - Formulário de dados do cliente
+   - Resumo do pedido
+   - Processamento da compra
+
+FUNCIONALIDADES JAVASCRIPT
+--------------------------
+
+1. Gerenciamento do Carrinho
+   - addToCart(): Adiciona produtos
+   - removeFromCart(): Remove produtos
+   - updateQuantity(): Altera quantidades
+   - clearCart(): Limpa carrinho
+
+2. Interface do Usuário
+   - toggleCart(): Abre/fecha carrinho
+   - openCheckout(): Abre checkout
+   - showNotification(): Exibe notificações
+
+3. Filtros de Produtos
+   - Filtro por categoria (Karate, MMA, Muay Thai, etc.)
+   - Sistema de busca por texto
+
+4. Persistência de Dados
+   - localStorage para manter carrinho
+   - Recuperação automática na inicialização
+
+CATEGORIAS DE PRODUTOS
+---------------------
+- Karatê: Kimonos, luvas
+- MMA: Luvas, shorts, equipamentos
+- Muay Thai: Luvas, shorts, prajied
+- Acessórios: Bandagens, equipamentos auxiliares
+
+TECNOLOGIAS UTILIZADAS
+---------------------
+- HTML5: Estrutura semântica
+- CSS3: Estilos modernos com variáveis CSS
+- JavaScript ES6+: Funcionalidades interativas
+- Font Awesome: Ícones
+- Google Fonts: Tipografia (Montserrat)
+
+RESPONSIVIDADE
+--------------
+O design é responsivo e adapta-se a diferentes tamanhos de tela:
+- Desktop: Layout completo
+- Tablet: Ajustes na grade de produtos
+- Mobile: Menu colapsável, layout otimizado
+
+SERVIDOR
+--------
+- Utiliza static-web-server para servir arquivos estáticos
+- Configurado para rodar na porta 80
+- Deploy automático no Replit
+
+RECURSOS VISUAIS
+---------------
+- Tema escuro/claro com variáveis CSS
+- Animações suaves nas interações
+- Efeitos hover nos produtos
+- Notificações toast para feedback
+
+DADOS PERSISTENTES
+-----------------
+- Carrinho salvo no localStorage
+- Recuperação automática na inicialização
+- Geração de números de pedido únicos
+
+PRÓXIMAS MELHORIAS SUGERIDAS
+----------------------------
+- Integração com API de pagamento
+- Sistema de usuários/login
+- Avaliações de produtos
+- Wishlist/Lista de desejos
+- Chat de suporte
+- Sistema de cupons de desconto
