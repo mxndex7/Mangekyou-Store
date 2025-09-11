@@ -33,19 +33,14 @@ function initializeFilters() {
                 
                 if (filterValue === 'Todos') {
                     card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else if (filterValue === 'Karate' && category === 'Karatê') {
                     card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else if (filterValue === 'Muaythai' && category === 'Muay Thai') {
                     card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else if (filterValue === 'MMA' && category === 'MMA') {
                     card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else if (filterValue === 'Acessórios' && (category === 'Proteções' || category === 'Muay Thai' || category === 'Acessórios')) {
                     card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else {
                     card.style.display = 'none';
                 }
@@ -68,7 +63,6 @@ function initializeSearch() {
             
             if (title.includes(searchTerm) || category.includes(searchTerm)) {
                 card.style.display = 'block';
-                card.style.animation = 'fadeInUp 0.5s ease';
             } else {
                 card.style.display = 'none';
             }
@@ -362,10 +356,8 @@ function getNotificationColor(type) {
 function initializeProductCards() {
     const productCards = document.querySelectorAll('.product-card');
     
-    // Product cards animations
-    productCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        
+    // Product cards hover effects only
+    productCards.forEach((card) => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
