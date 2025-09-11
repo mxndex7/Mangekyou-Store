@@ -10,11 +10,11 @@
   --bg-card: #1a1a1a;
   --text-primary: #ffffff;
   --text-secondary: #808080;
-  --accent-red: #ff103f;
-  --accent-red-hover: #e60e39;
+  --accent-red: #ff0f33;
+  --accent-red-hover: #e70d2e;
   --border-color: #333333;
-  --shadow: 0 4px 20px rgba(255, 16, 63, 0.1);
-  --shadow-hover: 0 8px 30px rgba(255, 16, 63, 0.2);
+  --shadow: 0 4px 20px rgb(255, 15, 39, 0.1);
+  --shadow-hover: 0 8px 30px rgb(255, 0, 38, 0.2);
 }
 
 body {
@@ -608,7 +608,7 @@ body {
 .hero {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 700px;
   max-width: 1920px;
   margin: 0 auto;
   overflow: hidden;
