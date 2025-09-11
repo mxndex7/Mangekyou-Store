@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -71,7 +70,7 @@
           <i class="fas fa-times"></i>
         </button>
       </div>
-      
+
       <div class="checkout-form">
         <div class="form-group">
           <label for="customerName">Nome Completo *</label>
@@ -89,7 +88,7 @@
           <label for="customerAddress">Endereço Completo *</label>
           <input type="text" id="customerAddress" required placeholder="Rua, número, bairro, cidade, CEP">
         </div>
-        
+
         <div class="order-summary">
           <h4>Resumo do Pedido</h4>
           <div class="summary-items" id="summaryItems"></div>
@@ -136,12 +135,12 @@
       </div>
     </section>
 
-    
+
 
     <section class="products" id="products">
       <div class="container">
         <h2 class="section-title">Produtos em Destaque</h2>
-        
+
         <div class="filters">
           <button class="filter-btn active">Todos</button>
           <button class="filter-btn">Karate</button>
@@ -271,7 +270,7 @@
             </div>
           </div>
 
-          <div class="product-card" data-category="Muaythai">
+          <div class="product-card" data-category="Muay Thai">
             <div class="product-image">
               <img src="midia/prajied muay thai.jpg" alt="Prajied Muay Thai" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
@@ -294,6 +293,54 @@
               </button>
             </div>
           </div>
+
+          <div class="product-card" data-category="Muay Thai">
+            <div class="product-image">
+              <img src="luva muay thai.jpg" alt="Luvas Muay Thai Profissional" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Luvas Muay Thai Profissional</h3>
+              <p class="product-category">Muay Thai</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="rating-count">(174 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 220,00</div>
+              <button class="add-to-cart-btn" onclick="addToCart(7, 'Luvas Muay Thai Profissional', 220.00, 'luva muay thai.jpg')">
+                <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
+
+          <div class="product-card" data-category="Muay Thai">
+            <div class="product-image">
+              <img src="shortsmuaythai.jpg" alt="Shorts Muay Thai Tradicional" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Shorts Muay Thai Tradicional</h3>
+              <p class="product-category">Muay Thai</p>
+              <div class="product-rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="rating-count">(142 avaliações)</span>
+              </div>
+              <div class="product-price">R$ 110,00</div>
+              <button class="add-to-cart-btn" onclick="addToCart(8, 'Shorts Muay Thai Tradicional', 110.00, 'shortsmuaythai.jpg')">
+                <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -302,13 +349,13 @@
     <section class="about" id="about">
       <div class="container">
         <h2 class="section-title">Sobre a MANGEKYOU STORE</h2>
-        
+
         <div class="about-content">
           <div class="about-text">
             <p>A MANGEKYOU STORE nasceu da necessidade de reunir em um só lugar equipamentos, vestimentas e itens para as principais artes marciais mundiais. Entendemos a dificuldade que atletas enfrentam para encontrar a loja ideal que atenda todas as suas necessidades.</p>
-            
+
             <p>Nossa missão é oferecer produtos de alta qualidade, testados e aprovados por profissionais das artes marciais, com a comodidade de comprar tudo em um só lugar.</p>
-            
+
             <div class="about-features">
               <div class="feature">
                 <i class="fas fa-shipping-fast"></i>
@@ -317,7 +364,7 @@
                   <p>Produtos enviados em até 24h</p>
                 </div>
               </div>
-              
+
               <div class="feature">
                 <i class="fas fa-medal"></i>
                 <div>
@@ -325,7 +372,7 @@
                   <p>Produtos testados por profissionais</p>
                 </div>
               </div>
-              
+
               <div class="feature">
                 <i class="fas fa-headset"></i>
                 <div>
@@ -335,7 +382,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="about-image">
             <div class="image-placeholder">
               <i class="fas fa-store"></i>
@@ -359,7 +406,7 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
-        
+
         <div class="footer-section">
           <h4>Categorias</h4>
           <ul>
@@ -371,7 +418,7 @@
             <li><a href="#boxe">Boxe</a></li>
           </ul>
         </div>
-        
+
         <div class="footer-section">
           <h4>Atendimento</h4>
           <div class="contact-info">
@@ -381,7 +428,7 @@
             <p><i class="fas fa-clock"></i> Sáb: 8h às 14h</p>
           </div>
         </div>
-        
+
         <div class="footer-section">
           <h4>Institucional</h4>
           <ul>
@@ -393,7 +440,7 @@
           </ul>
         </div>
       </div>
-      
+
       <div class="footer-bottom">
         <p>&copy; 2025 MANGEKYOU STORE. Todos os direitos reservados.</p>
         <div class="payment-methods">
