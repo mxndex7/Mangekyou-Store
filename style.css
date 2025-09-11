@@ -748,7 +748,7 @@ body {
 }
 
 .product-image {
-  height: 250px;
+  height: 450px;
   background: var(--bg-secondary);
   display: flex;
   align-items: center;
