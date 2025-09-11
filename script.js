@@ -29,17 +29,25 @@ function initializeFilters() {
             const filterValue = this.textContent.trim();
             
             productCards.forEach(card => {
+                const category = card.querySelector('.product-category').textContent.trim();
+                
                 if (filterValue === 'Todos') {
                     card.style.display = 'block';
                     card.style.animation = 'fadeInUp 0.5s ease';
+                } else if (filterValue === 'Karate' && category === 'Karatê') {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease';
+                } else if (filterValue === 'Muaythai' && category === 'Muay Thai') {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease';
+                } else if (filterValue === 'MMA' && category === 'MMA') {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease';
+                } else if (filterValue === 'Acessórios' && (category === 'Proteções' || category === 'Muay Thai' || category === 'Acessórios')) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease';
                 } else {
-                    const category = card.getAttribute('data-category');
-                    if (category && category.includes(filterValue)) {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeInUp 0.5s ease';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = 'none';
                 }
             });
         });
@@ -207,10 +215,12 @@ function closeCheckout() {
 function updateOrderSummary() {
     const summaryItems = document.getElementById('summaryItems');
     const summarySubtotal = document.getElementById('summarySubtotal');
+    const summaryShipping = document.getElementById('summaryShipping');
     const summaryTotal = document.getElementById('summaryTotal');
     
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = 25.00;
+    const address = document.getElementById('customerAddress') ? document.getElementById('customerAddress').value.trim() : '';
+    const shipping = address ? 25.00 : 0.00;
     const total = subtotal + shipping;
     
     summaryItems.innerHTML = cart.map(item => `
@@ -221,7 +231,18 @@ function updateOrderSummary() {
     `).join('');
     
     summarySubtotal.textContent = subtotal.toFixed(2).replace('.', ',');
+    summaryShipping.textContent = shipping.toFixed(2).replace('.', ',');
     summaryTotal.textContent = total.toFixed(2).replace('.', ',');
+    
+    // Update shipping display
+    const shippingElement = document.querySelector('.summary-line:nth-child(2) span:last-child');
+    if (shippingElement) {
+        if (!address) {
+            shippingElement.innerHTML = '<em style="color: var(--text-secondary);">Informe o endereço</em>';
+        } else {
+            shippingElement.innerHTML = `R$ ${shipping.toFixed(2).replace('.', ',')}`;
+        }
+    }
 }
 
 // Complete Order
@@ -229,8 +250,9 @@ function completeOrder() {
     const customerName = document.getElementById('customerName').value;
     const customerEmail = document.getElementById('customerEmail').value;
     const customerPhone = document.getElementById('customerPhone').value;
+    const customerAddress = document.getElementById('customerAddress').value;
     
-    if (!customerName || !customerEmail || !customerPhone) {
+    if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
         showNotification('Por favor, preencha todos os campos obrigatórios.', 'error');
         return;
     }
@@ -423,6 +445,14 @@ document.addEventListener('DOMContentLoaded', function() {
             value = value.replace(/(\d{2})(\d)/, '($1) $2');
             value = value.replace(/(\d{5})(\d)/, '$1-$2');
             this.value = value;
+        });
+    }
+    
+    // Address input listener to update shipping
+    const addressInput = document.getElementById('customerAddress');
+    if (addressInput) {
+        addressInput.addEventListener('input', function() {
+            updateOrderSummary();
         });
     }
 });
