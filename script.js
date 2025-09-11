@@ -339,7 +339,6 @@ function getNotificationColor(type) {
 // Product Cards Enhancement
 function initializeProductCards() {
     const productCards = document.querySelectorAll('.product-card');
-    const categoryCards = document.querySelectorAll('.category-card');
     
     // Product cards animations
     productCards.forEach((card, index) => {
@@ -351,30 +350,6 @@ function initializeProductCards() {
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-    
-    // Category cards animations
-    categoryCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        
-        card.addEventListener('click', function() {
-            const categoryName = this.querySelector('h3').textContent;
-            
-            // Scroll to products section
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-            
-            // Filter products by category
-            setTimeout(() => {
-                const filterBtns = document.querySelectorAll('.filter-btn');
-                const targetBtn = Array.from(filterBtns).find(btn => 
-                    btn.textContent.includes(categoryName.split(' ')[0])
-                );
-                
-                if (targetBtn) {
-                    targetBtn.click();
-                }
-            }, 500);
         });
     });
 }
