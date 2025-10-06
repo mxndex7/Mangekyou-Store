@@ -1,14 +1,11 @@
 
-// Shopping Cart System
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let orderNumber = '';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize cart display
     updateCartDisplay();
     updateCartCount();
 
-    // Initialize functionality
     initializeFilters();
     initializeSearch();
     initializeCarousels();
@@ -16,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSmoothScroll();
 });
 
-// Filter functionality
 function initializeFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
@@ -49,7 +45,6 @@ function initializeFilters() {
     });
 }
 
-// Search functionality
 function initializeSearch() {
     const searchInput = document.querySelector('.search-input');
     const productCards = document.querySelectorAll('.product-card');
@@ -70,12 +65,9 @@ function initializeSearch() {
     });
 }
 
-// Carousel functionality (removed - using static banner now)
 function initializeCarousels() {
-    // Carousel functionality removed - using static banner
 }
 
-// Shopping Cart Functions
 function addToCart(id, title, price, image) {
     const existingItem = cart.find(item => item.id === id);
     
@@ -183,7 +175,6 @@ function showAddToCartAnimation(id) {
     }
 }
 
-// Cart Sidebar Functions
 function toggleCart() {
     const cartSidebar = document.getElementById('cartSidebar');
     const cartOverlay = document.getElementById('cartOverlay');
@@ -192,7 +183,6 @@ function toggleCart() {
     cartOverlay.classList.toggle('show');
 }
 
-// Checkout Functions
 function openCheckout() {
     if (cart.length === 0) return;
     
@@ -228,7 +218,6 @@ function updateOrderSummary() {
     summaryShipping.textContent = shipping.toFixed(2).replace('.', ',');
     summaryTotal.textContent = total.toFixed(2).replace('.', ',');
     
-    // Update shipping display
     const shippingElement = document.querySelector('.summary-line:nth-child(2) span:last-child');
     if (shippingElement) {
         if (!address) {
@@ -239,7 +228,6 @@ function updateOrderSummary() {
     }
 }
 
-// Complete Order
 function completeOrder() {
     const customerName = document.getElementById('customerName').value;
     const customerEmail = document.getElementById('customerEmail').value;
@@ -255,7 +243,6 @@ function completeOrder() {
     completeBtn.innerHTML = '<div class="spinner"></div> Processando...';
     completeBtn.disabled = true;
     
-    // Simulate payment processing
     setTimeout(() => {
         orderNumber = generateOrderNumber();
         closeCheckout();
@@ -281,7 +268,7 @@ function showSuccessModal() {
 function closeSuccess() {
     const successModal = document.getElementById('successModal');
     successModal.classList.remove('show');
-    toggleCart(); // Close cart if open
+    toggleCart(); 
 }
 
 function clearCart() {
@@ -291,9 +278,9 @@ function clearCart() {
     updateCartCount();
 }
 
-// Notification System
+
 function showNotification(message, type = 'info') {
-    // Create notification element
+
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.innerHTML = `
@@ -301,7 +288,7 @@ function showNotification(message, type = 'info') {
         <span>${message}</span>
     `;
     
-    // Add styles
+
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -323,7 +310,7 @@ function showNotification(message, type = 'info') {
     
     document.body.appendChild(notification);
     
-    // Remove after 3 seconds
+ 
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => {
@@ -352,11 +339,11 @@ function getNotificationColor(type) {
     }
 }
 
-// Product Cards Enhancement
+
 function initializeProductCards() {
     const productCards = document.querySelectorAll('.product-card');
     
-    // Product cards hover effects only
+
     productCards.forEach((card) => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
@@ -368,7 +355,7 @@ function initializeProductCards() {
     });
 }
 
-// Smooth Scroll
+
 function initializeSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -384,7 +371,7 @@ function initializeSmoothScroll() {
     });
 }
 
-// Add CSS animations for notifications
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
@@ -427,9 +414,9 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Input Formatting for checkout
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Phone formatting
+
     const phoneInput = document.getElementById('customerPhone');
     if (phoneInput) {
         phoneInput.addEventListener('input', function() {
@@ -440,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Address input listener to update shipping
+
     const addressInput = document.getElementById('customerAddress');
     if (addressInput) {
         addressInput.addEventListener('input', function() {
@@ -449,7 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Scroll animations
+
 window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('section');
     const scrollPosition = window.pageYOffset + window.innerHeight;
@@ -462,7 +449,7 @@ window.addEventListener('scroll', function() {
     });
 });
 
-// Initialize scroll animations
+
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
@@ -471,14 +458,14 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.transition = 'all 0.6s ease';
     });
     
-    // Show first section immediately
+
     if (sections[0]) {
         sections[0].style.opacity = '1';
         sections[0].style.transform = 'translateY(0)';
     }
 });
 
-// Performance optimization - Lazy loading for images
+
 document.addEventListener('DOMContentLoaded', function() {
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {

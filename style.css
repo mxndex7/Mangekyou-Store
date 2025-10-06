@@ -167,7 +167,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Cart Button */
 .cart-btn {
   position: relative;
   background: var(--accent-red);
@@ -201,7 +200,6 @@ body {
   font-weight: bold;
 }
 
-/* Cart Sidebar */
 .cart-sidebar {
   position: fixed;
   top: 0;
@@ -366,7 +364,6 @@ body {
   cursor: not-allowed;
 }
 
-/* Cart Overlay */
 .cart-overlay {
   position: fixed;
   top: 0;
@@ -385,7 +382,6 @@ body {
   visibility: visible;
 }
 
-/* Checkout Modal */
 .checkout-modal {
   position: fixed;
   top: 0;
@@ -537,7 +533,6 @@ body {
   background: var(--accent-red-hover);
 }
 
-/* Success Modal */
 .success-modal {
   position: fixed;
   top: 0;
@@ -602,7 +597,6 @@ body {
   background: var(--accent-red-hover);
 }
 
-/* Hero Section */
 .hero {
   position: relative;
   width: 100%;
@@ -696,7 +690,6 @@ body {
   border-radius: 2px;
 }
 
-/* Products Section */
 .products {
   padding: 5rem 0;
 }
@@ -839,7 +832,6 @@ body {
   transform: translateY(0);
 }
 
-/* About Section */
 .about {
   padding: 5rem 0;
   background: var(--bg-secondary);
@@ -908,7 +900,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* Footer */
 .footer {
   background: var(--bg-primary);
   padding: 3rem 0 1rem;
@@ -1016,7 +1007,6 @@ body {
   color: var(--accent-red);
 }
 
-/* Animations */
 @keyframes addToCart {
   0% {
     transform: scale(1);
@@ -1050,7 +1040,7 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .header .container {
     flex-direction: column;
@@ -1150,18 +1140,18 @@ body {
   }
 }
 
-/* Smooth scrolling */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
+
 ::selection {
   background: var(--accent-red);
   color: white;
 }
 
-/* Scrollbar styling */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
